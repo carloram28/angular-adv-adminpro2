@@ -1,1 +1,22 @@
-<p>grafica1 works!</p>
+<div class="row">
+  <div class="col-4">
+    <app-dona title="Ventas"
+      [chartData]="{ labels: ['Producto A', 'Producto B', 'Producto C'], data: [120, 150, 180], colors: ['#FF0000', '#00FF00', '#0000FF'] }"></app-dona>
+  </div>
+  <div class="col-4">
+    <app-dona title="Ingresos"
+      [chartData]="{ labels: ['Q1', 'Q2', 'Q3', 'Q4'], data: [200, 300, 400, 500], colors: ['#123456', '#789ABC', '#DEF012', '#345678'] }"></app-dona>
+  </div>
+
+</div>
+<div class="row">
+  <div class="col-4">
+    <app-dona title="Ventas"
+      [chartData]="{ labels: ['Producto A', 'Producto B', 'Producto C'], data: [200, 300, 500], colors: ['#FF0000', '#00FF00', '#0000FF'] }"></app-dona>
+  </div>
+  <div class="col-4">
+    <app-dona title="Ingresos"
+      [chartData]="{ labels: ['Q1', 'Q2', 'Q3', 'Q4'], data: [200, 300, 400, 500], colors: ['#123456', '#789ABC', '#DEF012', '#345678'] }"></app-dona>
+  </div>
+
+</div>
