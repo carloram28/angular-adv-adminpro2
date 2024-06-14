@@ -15,7 +15,7 @@ const base_url = environment.base_url;
   providedIn: 'root'
 })
 export class UsuarioService {
-  public usuario: Usuario | undefined;
+  public usuario!: Usuario;
   constructor(private http: HttpClient,
     private router: Router,
     private ngZone: NgZone) {
@@ -24,6 +24,10 @@ export class UsuarioService {
 
   get token(): string {
     return localStorage.getItem('token') || '';
+  }
+
+  get uid(): string {
+    return this.usuario.uid || '';
   }
   guardarLocalStorage(token: string, menu: any) {
 
@@ -87,6 +91,19 @@ export class UsuarioService {
         })
       );
 
+  }
+
+  actualizarPerfil(data: { email: string, nombre: string, role: string }) {
+
+    data = {
+      ...data,
+      role: this.usuario.role || ''
+    };
+    return this.http.put(`${base_url}/usuarios/${this.uid}`, data, {
+      headers: {
+        'x-token': this.token
+      }
+    });
   }
 
   login(formData: LoginForm) {
