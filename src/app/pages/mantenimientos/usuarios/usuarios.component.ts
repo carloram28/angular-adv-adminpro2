@@ -5,6 +5,7 @@ import { BusquedasService } from '../../../services/busquedas.service';
 import Swal from 'sweetalert2';
 import { ModalImagenService } from '../../../services/modal-imagen.service';
 import { Subscription, delay } from 'rxjs';
+import { Hospital } from '../../../models/hospital.model';
 
 @Component({
   selector: 'app-usuarios',
@@ -59,19 +60,20 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     this.cargarUsuarios();
   }
 
-  buscar(termino: string): void {
+  buscar(termino: string) {
 
     if (termino.length === 0) {
-      this.usuarios = this.usuariosTemp;
-      return;
+      return this.usuarios = this.usuariosTemp;
     }
 
     this.busquedasService.buscar('usuarios', termino)
-      .subscribe((resp: Usuario[]) => {
+      .subscribe({
+        next: (resultados: any) => {
+          this.usuarios = resultados;
+        }
+      })
 
-        this.usuarios = resp;
-
-      });
+    return;
   }
 
   eliminarUsuario(usuario: Usuario) {
