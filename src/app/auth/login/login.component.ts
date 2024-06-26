@@ -27,7 +27,7 @@ export class LoginComponent implements AfterViewInit, OnInit {
 
   }
   ngOnInit(): void {
-    this.usuarioService.logout()
+
   }
 
   ngAfterViewInit(): void {
