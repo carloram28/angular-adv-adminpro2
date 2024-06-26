@@ -11,7 +11,7 @@ declare const google: any;
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements AfterViewInit, OnInit {
   @ViewChild('googleBtn') googleBtn!: ElementRef;
 
   public formLoginSubmitted: boolean = false;
@@ -23,10 +23,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
   constructor(private router: Router,
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private ngZone: NgZone) { }
-  ngOnInit(): void {
+    private ngZone: NgZone) {
 
   }
+  ngOnInit(): void {
+    this.usuarioService.logout()
+  }
+
   ngAfterViewInit(): void {
     this.googleAuthInit();
   }
@@ -62,7 +65,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
             icon: "success",
             title: "Iniciaste Sesión",
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000
           });
 
         },
@@ -84,8 +87,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
         if (this.loginForm.get('remember')!.value) {
           localStorage.setItem('email', this.loginForm.get('email')!.value);
+
         } else {
           localStorage.removeItem('email');
+
         };
 
         console.log("Sesion iniciada: ", resp);
@@ -101,7 +106,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           icon: "success",
           title: "¡Binvenido!",
           showConfirmButton: false,
-          timer: 1500
+          timer: 2000
         });
 
       },

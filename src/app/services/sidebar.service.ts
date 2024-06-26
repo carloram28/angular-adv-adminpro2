@@ -4,33 +4,40 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SidebarService {
+  public menu: { titulo: string, icono: string, submenu: { titulo: string, url: string }[] }[] = [];
 
-  menu: any[] = [
-    {
-      titulo: 'Dashboard',
-      icono: 'mdi mdi-gauge',
-      submenu: [
-        { titulo: 'Main', url: '/' },
-        { titulo: 'Graficas', url: 'grafica1' },
-        { titulo: 'Rxjs', url: 'rxjs' },
-        { titulo: 'Promesas', url: 'promesas' },
-        { titulo: 'ProgressBar', url: 'progress' },
-      ]
+  cargarMenu() {
+    const menuData = localStorage.getItem('menu');
 
-    },
-    {
-      titulo: 'Mantenimiento',
-      icono: 'mdi mdi-folder-lock-open',
-      submenu: [
-        { titulo: 'Usuarios', url: 'usuarios' },
-        { titulo: 'Hospitales', url: 'hospitales' },
-        { titulo: 'Médicos', url: 'medicos' },
+    this.menu = menuData ? JSON.parse(menuData) : [];
+  }
 
-      ]
+  // menu: any[] = [
+  //   {
+  //     titulo: 'Dashboard',
+  //     icono: 'mdi mdi-gauge',
+  //     submenu: [
+  //       { titulo: 'Main', url: '/' },
+  //       { titulo: 'Graficas', url: 'grafica1' },
+  //       { titulo: 'Rxjs', url: 'rxjs' },
+  //       { titulo: 'Promesas', url: 'promesas' },
+  //       { titulo: 'ProgressBar', url: 'progress' },
+  //     ]
 
-    }
+  //   },
+  //   {
+  //     titulo: 'Mantenimiento',
+  //     icono: 'mdi mdi-folder-lock-open',
+  //     submenu: [
+  //       { titulo: 'Usuarios', url: 'usuarios' },
+  //       { titulo: 'Hospitales', url: 'hospitales' },
+  //       { titulo: 'Médicos', url: 'medicos' },
 
-  ]
+  //     ]
 
-  constructor() { }
+  //   }
+
+  // ]
+
+
 }

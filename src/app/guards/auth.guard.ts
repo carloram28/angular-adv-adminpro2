@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { UsuarioService } from '../services/usuario.service';
 
 export const AuthGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-  console.log("Pasó por el guard");
+
   const authService = inject(UsuarioService);
   const router = inject(Router);
 
